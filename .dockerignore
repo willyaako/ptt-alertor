@@ -1,0 +1,9 @@
+.env
+.vscode
+.gitignore
+.git
+README.md
+__pycache__
+.dockerignore
+.DS_Store
+dockerfile
