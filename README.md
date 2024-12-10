@@ -1,4 +1,4 @@
-# PTT Alert System
+# PTT Alertor
 一個簡單可在本地建立的通知工具，並根據設定的條件查詢 PTT 看板（如關鍵字、推文數、作者）透過 LINE Notify 發送通知。
 
  [![Docker Downloads][Docker-Image]][Docker-Url]
