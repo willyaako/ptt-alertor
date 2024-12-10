@@ -18,6 +18,9 @@
 - Python 3
 - Docker
 - LINE Notify Token
+  ( 請至 Line 官網取得token: https://notify-bot.line.me/my/ )
+
+
 ***
 # 安裝與使用
 
