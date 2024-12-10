@@ -1,5 +1,5 @@
 # PTT Alert System
-PTT Alert System 是一個自動化的通知工具，用於監控 PTT 看板文章，並根據設定的條件（如關鍵字、推文數、作者）透過 LINE Notify 發送通知。
+一個簡單可在本地建立的通知工具，並根據設定的條件查詢 PTT 看板（如關鍵字、推文數、作者）透過 LINE Notify 發送通知。
 
  [![Docker Downloads][Docker-Image]][Docker-Url]
 
@@ -43,7 +43,11 @@ https://drive.google.com/file/d/{GOOGLE_FILE_ID}/view?usp=drive_link
     }
 }
 ```
-
+#### 說明
+- key: 關鍵字列表，符合所有條件才觸發通知。
+- push: 推文數門檻，超過指定數量觸發通知。
+- author: 指定作者發文時觸發通知。
+  
 ### 3. 設定環境變數
 
 #### 建立 .env 檔案：
@@ -68,7 +72,10 @@ python main.py
 docker pull willyaako/ptt-alertor:latest
 ```
 ### 2. 配置文件
-需提供如下格式的檔案 config.json, 並上傳到 GoogleDrive：
+需提供如下格式的檔案 config.json, 並上傳到 GoogleDrive, 需公開檔案並記錄 File ID
+
+example: 
+https://drive.google.com/file/d/{GOOGLE_FILE_ID}/view?usp=drive_link
 
 ```json
 {
@@ -79,7 +86,11 @@ docker pull willyaako/ptt-alertor:latest
     }
 }
 ```
-
+#### 說明
+- key: 關鍵字列表，符合所有條件才觸發通知。
+- push: 推文數門檻，超過指定數量觸發通知。
+- author: 指定作者發文時觸發通知。
+  
 ### 3. 運行容器
 #### 使用環境變數配置：
 
@@ -89,13 +100,9 @@ docker run -d \
     -e GOOGLE_FILE_ID=1A2B3C4D5E6F \
     -e FETCH_PERIOD=60 \
     -e LINE_NOTIFY_TOKEN=YOUR_LINE_TOKEN_HERE \
-    ptt-alert
+    willyaako/ptt-alertor:latest
 ```
 
+### ToDo List
+- 設定檔可直接讀取本機檔案
 
-
-
-#### 說明
-- key: 關鍵字列表，符合所有條件才觸發通知。
-- push: 推文數門檻，超過指定數量觸發通知。
-- author: 指定作者發文時觸發通知。
