@@ -1,5 +1,4 @@
-# 使用官方 Python 基礎映像
-FROM python:3.9-slim
+FROM python:3.13.2-alpine
 
 WORKDIR /app
 COPY . .
