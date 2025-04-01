@@ -1,11 +1,13 @@
 import os
 
-def load_sent_list(file_path):
-    if os.path.exists(file_path):
-        with open(file_path, 'r') as file:
+SENT_LIST_FILE = "./sended_urls.txt"
+
+def load_sent_list():
+    if os.path.exists(SENT_LIST_FILE):
+        with open(SENT_LIST_FILE, 'r') as file:
             return file.read().splitlines()
     return []
 
-def save_sent_list(file_path, sended):
-    with open(file_path, 'w') as file:
+def save_sent_list(sended):
+    with open(SENT_LIST_FILE, 'w') as file:
         file.write("\n".join(sended))

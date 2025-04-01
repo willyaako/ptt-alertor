@@ -1,19 +1,20 @@
+import json
 import os
 import requests
-import json
-from datetime import datetime
 from dotenv import load_dotenv
 
+# 載入 .env 檔案
 load_dotenv()
 
 def load_config(key):
+    """ 從 .env 讀取設定 """
     return os.getenv(key)
 
-def load_line_token():
-    token = os.getenv("LINE_TOKEN")
-    if not token:
-        raise ValueError("環境變數 LINE_TOKEN 未設置，請檢查！")
-    return token
+# 測試讀取環境變數
+if __name__ == "__main__":
+    print("🔹 DISCORD_WEBHOOK_URL:", load_config("DISCORD_WEBHOOK_URL"))
+    print("🔹 FETCH_PERIOD:", load_config("FETCH_PERIOD"))
+    print("🔹 GOOGLE_FILE_ID:", load_config("GOOGLE_FILE_ID"))
 
 def update_keyword_dict(file_url):
     try:
@@ -23,16 +24,3 @@ def update_keyword_dict(file_url):
     except Exception as e:
         print("更新關鍵字字典失敗:", e)
         return {}
-    
-def load_config_from_json(file_path="config.json"):
-    """
-    從本地 JSON 檔案讀取設定。
-    :param file_path: JSON 檔案的路徑
-    :return: 配置的字典
-    """
-    if not os.path.exists(file_path):
-        raise FileNotFoundError(f"配置檔案 {file_path} 不存在，請檢查！")
-    
-    with open(file_path, "r", encoding="utf-8") as file:
-        config = json.load(file)
-        return config
