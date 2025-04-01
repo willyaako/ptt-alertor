@@ -25,9 +25,9 @@
 
 ---
 
-## 安裝與使用
+## Install and Usage
 
-### 1. 安裝依賴套件
+### 1. Install requirements
 
 如果您想直接運行程式：
 
@@ -35,7 +35,7 @@
 pip install -r requirements.txt
 ```
 
-### 2. 配置文件
+### 2. Configurations
 
 需提供如下格式的檔案 `config.json`，並上傳到 Google Drive，需公開檔案並記錄 **File ID**。
 
@@ -57,7 +57,7 @@ https://drive.google.com/file/d/{GOOGLE_FILE_ID}/view?usp=drive_link
 - `push`: 推文數門檻，超過指定數量觸發通知。
 - `author`: 指定作者發文時觸發通知。
 
-### 3. 設定環境變數
+### 3. Enviornment
 
 #### 建立 `.env` 檔案：
 
@@ -67,7 +67,7 @@ FETCH_PERIOD=60
 DISCORD_WEBHOOK_URL=YOUR_DISCORD_WEBHOOK_URL
 ```
 
-### 4. 運行程式
+### 4. Run
 
 ```bash
 python main.py
@@ -75,7 +75,7 @@ python main.py
 
 ---
 
-## 使用 Docker
+## Run with Docker
 
 ### 1. Pull Docker image
 
@@ -83,7 +83,7 @@ python main.py
 docker pull willyaako/ptt-alertor:latest
 ```
 
-### 2. 配置文件
+### 2. Configuration
 
 需提供如下格式的檔案 `config.json`，並上傳到 Google Drive，需公開檔案並記錄 **File ID**。
 
@@ -105,7 +105,7 @@ https://drive.google.com/file/d/{GOOGLE_FILE_ID}/view?usp=drive_link
 - `push`: 推文數門檻，超過指定數量觸發通知。
 - `author`: 指定作者發文時觸發通知。
 
-### 3. 運行容器
+### 3. Run container
 
 #### 使用環境變數配置：
 
