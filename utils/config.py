@@ -14,11 +14,16 @@ def load_config(key):
 if __name__ == "__main__":
     print("🔹 DISCORD_WEBHOOK_URL:", load_config("DISCORD_WEBHOOK_URL"))
     print("🔹 FETCH_PERIOD:", load_config("FETCH_PERIOD"))
-    print("🔹 GOOGLE_FILE_ID:", load_config("GOOGLE_FILE_ID"))
+    print("🔹 GITHUB_FILE_URL:", load_config("GITHUB_FILE_URL"))
 
 def update_keyword_dict(file_url):
     try:
-        response = requests.get(file_url)
+        github_token = load_config("GITHUB_TOKEN")  # 從環境變數取得 GitHub token
+        headers = {
+            "Authorization": f"token {github_token}",
+            "Accept": "application/vnd.github.v3.raw"
+        }
+        response = requests.get(file_url, headers=headers)
         response.raise_for_status()
         return json.loads(response.content.decode('utf-8'))
     except Exception as e:

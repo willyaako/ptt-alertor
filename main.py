@@ -12,7 +12,7 @@ if __name__ == "__main__":
     send_discord_message(f"📢 {datetime.now()} PTT ALERT START")
 
     FIRSTBOOT_CHECK_FLAG = True
-    config_file_url = "https://drive.google.com/uc?id=" + load_config("GOOGLE_FILE_ID")
+    config_file_url = load_config("GITHUB_FILE_URL")
     wait_time = int(load_config("FETCH_PERIOD"))
 
     sended = load_sent_list()
