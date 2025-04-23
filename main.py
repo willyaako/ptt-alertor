@@ -51,6 +51,8 @@ if __name__ == "__main__":
             send_discord_message(f"🛑 {datetime.now()} PTT ALERT STOP")
             break
         except Exception as e:
-            print(datetime.now(), "❌ Error:", e)
+            errorMsg = datetime.now(), "❌ Error:", e
+            print(errorMsg)
+            send_discord_message(errorMsg)
             traceback.print_exc()
             time.sleep(10)
