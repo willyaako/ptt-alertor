@@ -25,56 +25,6 @@
 
 ---
 
-## Install and Usage
-
-### 1. Install requirements
-
-如果您想直接運行程式：
-
-```sh
-pip install -r requirements.txt
-```
-
-### 2. Configurations
-
-需提供如下格式的檔案 `config.json`，並上傳到 Google Drive，需公開檔案並記錄 **File ID**。
-
-範例：
-https://drive.google.com/file/d/{GOOGLE_FILE_ID}/view?usp=drive_link
-
-```json
-{
-    "MacShop": {
-        "key": [["HomePod", "2"], ["iPhone", "16"]],
-        "push": 50,
-        "author": ["aaa", "bbb"]
-    }
-}
-```
-
-#### 說明
-- `key`: 關鍵字列表，符合所有條件才觸發通知。
-- `push`: 推文數門檻，超過指定數量觸發通知。
-- `author`: 指定作者發文時觸發通知。
-
-### 3. Enviornment
-
-#### 建立 `.env` 檔案：
-
-```sh
-GOOGLE_FILE_ID=YOUR_GOOGLE_FILE_ID
-FETCH_PERIOD=60
-DISCORD_WEBHOOK_URL=YOUR_DISCORD_WEBHOOK_URL
-```
-
-### 4. Run
-
-```bash
-python main.py
-```
-
----
-
 ## Run with Docker
 
 ### 1. Pull Docker image
@@ -85,10 +35,9 @@ docker pull willyaako/ptt-alertor:latest
 
 ### 2. Configuration
 
-需提供如下格式的檔案 `config.json`，並上傳到 Google Drive，需公開檔案並記錄 **File ID**。
+需提供如下格式的 json 檔案，並上傳到 Github Private Repo。
 
 範例：
-https://drive.google.com/file/d/{GOOGLE_FILE_ID}/view?usp=drive_link
 
 ```json
 {
@@ -112,11 +61,18 @@ https://drive.google.com/file/d/{GOOGLE_FILE_ID}/view?usp=drive_link
 ```sh
 docker run -d \
     --name ptt-alert \
-    -e GOOGLE_FILE_ID=1A2B3C4D5E6F \
+    -e GITHUB_TOKEN=1A2B3C4D5E6F \
+    -e GITHUB_FILE_URL=https://raw.githubusercontent.com/willyaako/ptt_alert_keyword/main/config.json
     -e FETCH_PERIOD=60 \
     -e DISCORD_WEBHOOK_URL=YOUR_DISCORD_WEBHOOK_URL \
     willyaako/ptt-alertor:latest
 ```
+
+#### 說明
+- `GITHUB_TOKEN`: 你的 GitHub Personal Access Token，用來授權存取私有 GitHub Repo。
+- `GITHUB_FILE_URL`: 設定的 JSON 配置檔案 URL。
+- `FETCH_PERIOD`: 設定多久檢查一次，單位是秒（如：60 表示每 60 秒檢查一次）
+- `DISCORD_WEBHOOK_URL`: 你的 Discord Webhook URL，發送通知的目標。
 
 ---
 
