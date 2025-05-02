@@ -9,7 +9,6 @@ from utils.discord_notify import send_discord_message
 
 if __name__ == "__main__":
     print(datetime.now(), "📢 PTT ALERT START")
-    send_discord_message(f"📢 {datetime.now()} PTT ALERT START")
 
     FIRSTBOOT_CHECK_FLAG = True
     config_file_url = load_config("GITHUB_FILE_URL")
@@ -17,10 +16,10 @@ if __name__ == "__main__":
 
     sended = load_sent_list()
     last_keyword_dict = None  # 用來記錄上次的關鍵字
-
+    send_discord_message(f"📢 {datetime.now()} PTT ALERT START")
     while True:
         try:
-            keyword_dict = update_keyword_dict(config_file_url)
+            keyword_dict = update_keyword_dict(config_file_url, last_keyword_dict)
             # 這裡應該加入從 Google Drive 讀取 JSON 設定的邏輯
             # 檢查關鍵字是否有變更
             if last_keyword_dict is None or json.dumps(keyword_dict, sort_keys=True) != json.dumps(last_keyword_dict, sort_keys=True):
